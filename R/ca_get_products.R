@@ -6,9 +6,9 @@
 ca_get_products <- function(sku = NULL) {
 
   # prepare filters
-  q <- NULL
+  q <- list()
   if (!is.null(sku))
-    q <- list("$filter" = paste0("Sku eq '", sku, "'"))
+    q <- c(q, "$filter" = paste0("Sku eq '", sku, "'"))
 
   # call api; parse response; convert fields to appropriate format
   ca_api("Products", query = q) %>%
