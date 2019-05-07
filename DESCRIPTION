@@ -1,0 +1,13 @@
+Package: channeladvisor
+Type: Package
+Title: Access the ChannelAdvisor API
+Version: 0.1.0
+Author: Anthony Pileggi
+Maintainer: Anthony Pileggi <apileggi20@gmail.com>
+Description: Easily access, update, and create information about products,
+    inventory, and orders in your ChannelAdvisor account.  Requires an active
+    ChannelAdvisor Developer Account (https://developer.channeladvisor.com/).
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
