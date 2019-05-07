@@ -4,8 +4,7 @@
 \alias{ca_get_products}
 \title{Return product info (possibly by SKU)}
 \usage{
-ca_get_products(sku = NULL,
-  access_token = Sys.getenv("CA_ACCESS_TOKEN"))
+ca_get_products(sku = NULL)
 }
 \arguments{
 \item{sku}{product SKU}

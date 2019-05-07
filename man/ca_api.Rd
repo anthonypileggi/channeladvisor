@@ -4,7 +4,7 @@
 \alias{ca_api}
 \title{Make a call to the ChannelAdvisor API}
 \usage{
-ca_api(endpoint = "Products", query = NULL)
+ca_api(endpoint = "Products", ...)
 }
 \arguments{
 \item{endpoint}{API endpoint}
