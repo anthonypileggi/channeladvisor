@@ -1,6 +1,7 @@
 #' Return product info (possibly by SKU)
 #' @param sku product SKU
 #' @param access_token dev access token
+#' @importFrom magrittr "%>%"
 #' @export
 ca_get_products <- function(sku = NULL) {
 
