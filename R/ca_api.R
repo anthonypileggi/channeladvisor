@@ -4,12 +4,24 @@
 ca_api <- function(endpoint = "Products", ...) {
 
   # prepare url
-  url <- "https://api.channeladvisor.com/v1"
+  base_url <- "https://api.channeladvisor.com/v1"
   q <- list(access_token = Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN"))
-  url <- httr::modify_url(url, path = file.path("v1", endpoint), query = q)
+  url <- httr::modify_url(base_url, path = file.path("v1", endpoint), query = q)
 
   # get API response
   response <- httr::GET(url, ...)
+
+  # refresh stale token and re-submit
+  if (httr::http_error(response)) {
+    ca_refresh_token()
+    q <- list(access_token = Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN"))
+    url <- httr::modify_url(base_url, path = file.path("v1", endpoint), query = q)
+    response <- httr::GET(url, ...)
+    if (httr::http_error(response))
+      stop("API call returned an error!")
+  }
+
+  # extract response content
   x <- httr::content(response)
   out <- x$value
 
