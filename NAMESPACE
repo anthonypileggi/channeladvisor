@@ -2,3 +2,4 @@
 
 export(ca_get_products)
 export(ca_upload_products)
+importFrom(magrittr,"%>%")
