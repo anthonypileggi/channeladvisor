@@ -14,7 +14,7 @@ ca_get_products <- function(sku = NULL) {
   ca_api("Products", query = q) %>%
     ca_parse_response() %>%
     dplyr::mutate_at(
-      c("CreateDateUtc", "UpdateDateUtc", "QuantityUpdateDateUtc"),
+      c("CreateDateUtc", "UpdateDateUtc", "QuantityUpdateDateUtc", "BlockedDateUtc", "LastSaleDateUtc", "ReceivedDateUtc"),
       ca_parse_datetime
       )
 }
