@@ -1,5 +1,6 @@
 #' Refresh an access token
 #' @param access_token dev access token
+#' @export
 ca_refresh_token <- function() {
   url <- httr::modify_url("https://api.channeladvisor.com/", path = "oauth2/token")
   auth <- httr::authenticate(Sys.getenv("CHANNELADVISOR_APP_ID"), Sys.getenv("CHANNELADVISOR_SECRET"))
