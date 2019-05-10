@@ -3,7 +3,15 @@
 #' @param file full path to file to upload
 #' @param type import type
 #' @export
-ca_upload_products <- function(file, type = c("AddUpdate", "UpdateOnly", "AddOnly")) {
+ca_upload_products <- function(file = NULL, data = NULL, type = c("AddUpdate", "UpdateOnly", "AddOnly")) {
+
+  # input checks
+  if (all(is.null(file), is.null(data)))
+    stop("Must provide a `file` or some `data`!")
+  if (!is.null(data) & !is.data.frame(data))
+    stop("`data` must be a data.frame object!")
+  if (all(!is.null(file), !is.null(data)))
+    stop("Provide only one of `data` or `file`!")
 
   # prepare url/parameters
   type <- match.arg(type)
@@ -18,8 +26,25 @@ ca_upload_products <- function(file, type = c("AddUpdate", "UpdateOnly", "AddOnl
       )
   url <- httr::modify_url(url, path = file.path("v1", endpoint), query = q)
 
+  # convert `data` to a file (if required)
+  is_temp <- FALSE
+  if (is.null(file)) {
+    is_temp <- TRUE
+    file <- tempfile(fileext = ".csv")
+    readr::write_csv(data, file, na = "")
+  }
+
   # submit file upload via API
   response <- httr::POST(url, body = httr::upload_file(file))
+  if (httr::http_error(response)) {
+    message("---> FAILED <---")
+  } else {
+    message("---> SUCCESS <---")
+  }
+
+  # remove file (if temporary)
+  if (is_temp)
+    unlink(file)
 
   return(invisible(response))
 }
