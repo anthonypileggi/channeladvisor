@@ -10,8 +10,15 @@ ca_get_products <- function(sku = NULL) {
   if (!is.null(sku))
     q <- c(q, "$filter" = paste0("Sku eq '", sku, "'"))
 
-  # call api; parse response; convert fields to appropriate format
-  ca_api("Products", query = q) %>%
+  # call api
+  response <- ca_api("Products", query = q)
+  if (length(response) == 0) {
+    message("No matching listings were found.")
+    return(NULL)
+  }
+
+  # parse response; convert fields to appropriate format
+  response %>%
     ca_parse_response() %>%
     dplyr::mutate_at(
       c("CreateDateUtc", "UpdateDateUtc", "QuantityUpdateDateUtc", "BlockedDateUtc", "LastSaleDateUtc", "ReceivedDateUtc"),
