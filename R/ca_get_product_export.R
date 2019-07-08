@@ -50,6 +50,14 @@ ca_get_product_export <- function() {
   # load file export
   out <- readr::read_tsv(outfile)
 
+  # parse date columns
+  out <-
+    dplyr::mutate_at(
+      out,
+      c("CreateDateUtc", "UpdateDateUtc", "LastSaleDateUtc", "ReceivedDateUtc"),
+      ca_parse_datetime
+    )
+
   # file clean-up
   unlink(c(zfile, outfile))
 
