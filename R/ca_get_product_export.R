@@ -48,7 +48,7 @@ ca_get_product_export <- function() {
   file.rename(tfile, outfile)
 
   # load file export
-  out <- readr::read_tsv(outfile)
+  out <- readr::read_tsv(outfile, guess_max = 100000)
 
   # parse date columns
   # out <-
