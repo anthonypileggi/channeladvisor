@@ -58,6 +58,15 @@ ca_get_product_export <- function() {
       ca_parse_datetime
     )
 
+  # unnest attributes
+  id <- which(stringr::str_detect(names(out), "Attribute[0-9]+Name"))
+  out1 <- out[, id + 1]
+  names(out1) <- as.character(out[1, id])
+  out <- dplyr::bind_cols(
+    out[, -(c(id, id + 1))],
+    out1
+  )
+
   # file clean-up
   unlink(c(zfile, outfile))
 
