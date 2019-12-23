@@ -4,8 +4,11 @@
 \alias{ca_upload_products}
 \title{Upload a product/inventory file}
 \usage{
-ca_upload_products(file = NULL, data = NULL, type = c("AddUpdate",
-  "UpdateOnly", "AddOnly"))
+ca_upload_products(
+  file = NULL,
+  data = NULL,
+  type = c("AddUpdate", "UpdateOnly", "AddOnly")
+)
 }
 \arguments{
 \item{file}{full path to file to upload}
