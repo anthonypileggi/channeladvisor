@@ -11,7 +11,7 @@ ca_update_product <- function(id = NULL, sku = NULL, data = NULL) {
   if (is.null(data)) {
     stop("Must provide product information as `data`!")
   } else {
-    fields <- c("Weight", "Cost", "BuyItNowPrice", "Brand", "Manufacturer", "MPN", "Title", "Condition", "ASIN", "UPC")
+    fields <- c("Weight", "Cost", "BuyItNowPrice", "Brand", "Manufacturer", "MPN", "Title", "Condition", "ASIN", "UPC", "Description")
     if (!all(names(data) %in% fields))
       stop(paste0("Fields provided are not appropriate for this API endpoint! Must be one of: {", paste(fields, collapse = ", "), "}"))
   }
