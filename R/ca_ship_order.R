@@ -3,8 +3,9 @@
 #' @param tracking tracking number
 #' @param carrier shipping carrier code
 #' @param class shipping class code
+#' @param date ship date
 #' @export
-ca_ship_order <- function(orderid, tracking, carrier, class) {
+ca_ship_order <- function(orderid, tracking, carrier, class, date = NULL) {
 
   channeladvisor:::ca_refresh_token()
 
@@ -15,24 +16,24 @@ ca_ship_order <- function(orderid, tracking, carrier, class) {
   q <- list(access_token = Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN"))
   url <- httr::modify_url(base_url, path = file.path("v1", endpoint), query = q)
 
+  # # set ship date/time (in UTC) -- always set to noon
+  if (is.null(date) | date == Sys.Date()) {   # no date provided (or today), assume today
+    dt <- Sys.time()
+  } else {
+    dt <- lubridate::as_datetime(paste(date, "12:00:00"), tz = "EST")
+  }
+  dt <- lubridate::with_tz(dt, tz = "UTC")
+
   # payload
   data <- list(
     Value = list(
       TrackingNumber = tracking,
       ShippingCarrier = carrier,
       ShippingClass = class,
-      DeliveryStatus = "Complete"
+      DeliveryStatus = "Complete",
+      ShippedDateUtc = format(dt, "%Y-%m-%dT%TZ")
     )
   )
-
-  # data <- list(
-  #   Value = list(
-  #     TrackingNumber = "9261290987363900003098",
-  #     ShippingCarrier = "AMZN_US",
-  #     ShippingClass = "Standard",
-  #     DeliveryStatus = "Complete"
-  #   )
-  # )
 
   # get API response
   response <- httr::POST(url, body = data, encode = "json")

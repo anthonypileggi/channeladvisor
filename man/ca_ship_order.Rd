@@ -4,7 +4,7 @@
 \alias{ca_ship_order}
 \title{Mark order as shipped and update tracking}
 \usage{
-ca_ship_order(orderid, tracking, carrier, class)
+ca_ship_order(orderid, tracking, carrier, class, date = NULL)
 }
 \arguments{
 \item{orderid}{order ID}
@@ -14,6 +14,8 @@ ca_ship_order(orderid, tracking, carrier, class)
 \item{carrier}{shipping carrier code}
 
 \item{class}{shipping class code}
+
+\item{date}{ship date}
 }
 \description{
 Mark order as shipped and update tracking
