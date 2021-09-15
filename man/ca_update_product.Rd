@@ -4,7 +4,7 @@
 \alias{ca_update_product}
 \title{Update product info}
 \usage{
-ca_update_product(id = NULL, sku = NULL, data = NULL)
+ca_update_product(id = NULL, sku = NULL, data = NULL, account = "US")
 }
 \arguments{
 \item{id}{product ID}
@@ -12,6 +12,8 @@ ca_update_product(id = NULL, sku = NULL, data = NULL)
 \item{sku}{product SKU}
 
 \item{data}{product information (list/tibble)}
+
+\item{account}{target account/profile}
 }
 \description{
 Update product info

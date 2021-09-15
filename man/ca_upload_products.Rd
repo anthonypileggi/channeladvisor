@@ -7,13 +7,18 @@
 ca_upload_products(
   file = NULL,
   data = NULL,
-  type = c("AddUpdate", "UpdateOnly", "AddOnly")
+  type = c("AddUpdate", "UpdateOnly", "AddOnly"),
+  account = Sys.getenv("CHANNELADVISOR_ACCOUNT")
 )
 }
 \arguments{
 \item{file}{full path to file to upload}
 
+\item{data}{data.frame/tibble to upload}
+
 \item{type}{import type}
+
+\item{account}{account/profile}
 }
 \description{
 Upload a product/inventory file

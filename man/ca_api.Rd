@@ -4,10 +4,12 @@
 \alias{ca_api}
 \title{Make a call to the ChannelAdvisor API}
 \usage{
-ca_api(endpoint = "Products", ...)
+ca_api(endpoint = "Products", account = "US", ...)
 }
 \arguments{
 \item{endpoint}{API endpoint}
+
+\item{account}{account/profile}
 
 \item{query}{named list with query to submit}
 }

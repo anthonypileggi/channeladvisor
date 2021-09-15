@@ -4,7 +4,7 @@
 \alias{ca_get_unshipped_orders}
 \title{Get unshipped orders}
 \usage{
-ca_get_unshipped_orders()
+ca_get_unshipped_orders(account = "US")
 }
 \description{
 Get unshipped orders

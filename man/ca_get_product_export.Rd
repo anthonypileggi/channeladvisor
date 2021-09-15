@@ -4,7 +4,10 @@
 \alias{ca_get_product_export}
 \title{Retreive products via file export (API)}
 \usage{
-ca_get_product_export()
+ca_get_product_export(account = "US")
+}
+\arguments{
+\item{account}{target account/profile}
 }
 \description{
 Retreive products via file export (API)

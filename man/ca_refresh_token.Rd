@@ -4,10 +4,18 @@
 \alias{ca_refresh_token}
 \title{Refresh an access token}
 \usage{
-ca_refresh_token()
+ca_refresh_token(
+  app_id = Sys.getenv("CHANNELADVISOR_APP_ID"),
+  secret = Sys.getenv("CHANNELADVISOR_SECRET"),
+  refresh_token = Sys.getenv("CHANNELADVISOR_REFRESH_TOKEN")
+)
 }
 \arguments{
-\item{access_token}{dev access token}
+\item{app_id}{channeladvisor dev application id}
+
+\item{refresh_token}{channeladvisor refresh token}
+
+\item{app_secret}{channeladvisor application secret}
 }
 \description{
 Refresh an access token

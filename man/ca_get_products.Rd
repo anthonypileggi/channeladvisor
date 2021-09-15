@@ -4,12 +4,12 @@
 \alias{ca_get_products}
 \title{Return product info (possibly by SKU)}
 \usage{
-ca_get_products(sku = NULL)
+ca_get_products(sku = NULL, account = "US")
 }
 \arguments{
 \item{sku}{product SKU}
 
-\item{access_token}{dev access token}
+\item{account}{target account/profile}
 }
 \description{
 Return product info (possibly by SKU)
