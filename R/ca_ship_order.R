@@ -4,10 +4,16 @@
 #' @param carrier shipping carrier code
 #' @param class shipping class code
 #' @param date ship date
+#' @param account target account/profile
 #' @export
-ca_ship_order <- function(orderid, tracking, carrier, class, date = NULL) {
+ca_ship_order <- function(orderid,
+                          tracking,
+                          carrier,
+                          class,
+                          date = NULL,
+                          account = "US") {
 
-  channeladvisor:::ca_refresh_token()
+  ca_set_account(account)
 
   # prepare url
   base_url <- "https://api.channeladvisor.com/v1"

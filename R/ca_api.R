@@ -1,7 +1,14 @@
 #' Make a call to the ChannelAdvisor API
 #' @param endpoint API endpoint
+#' @param account account/profile
 #' @param query named list with query to submit
-ca_api <- function(endpoint = "Products", ...) {
+#' @export
+ca_api <- function(endpoint = "Products",
+                   account = "US",
+                   ...) {
+
+  # set target account
+  ca_set_account(account)
 
   # prepare url
   base_url <- "https://api.channeladvisor.com/v1"

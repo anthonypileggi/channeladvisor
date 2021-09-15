@@ -1,7 +1,7 @@
 #' Get unshipped orders
 #' @importFrom magrittr "%>%"
 #' @export
-ca_get_unshipped_orders <- function() {
+ca_get_unshipped_orders <- function(account = "US") {
 
   # prepare filters
   q <- list(
@@ -10,7 +10,7 @@ ca_get_unshipped_orders <- function() {
     )
 
   # call api
-  response <- ca_api("Orders", query = q)
+  response <- ca_api("Orders", query = q, account = account)
   if (length(response) == 0) {
     message("No matching listings were found.")
     return(NULL)

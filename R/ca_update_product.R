@@ -2,11 +2,15 @@
 #' @param id product ID
 #' @param sku product SKU
 #' @param data product information (list/tibble)
+#' @param account target account/profile
 #' @importFrom magrittr "%>%"
 #' @export
-ca_update_product <- function(id = NULL, sku = NULL, data = NULL) {
+ca_update_product <- function(id = NULL,
+                              sku = NULL,
+                              data = NULL,
+                              account = "US") {
 
-  ca_refresh_token()
+  ca_set_account(account)
 
   if (is.null(data)) {
     stop("Must provide product information as `data`!")
@@ -17,7 +21,7 @@ ca_update_product <- function(id = NULL, sku = NULL, data = NULL) {
   }
 
   if (!is.null(sku) & length(sku) == 1)
-    id <- ca_get_products(sku)$ID
+    id <- ca_get_products(sku, account)$ID
   if (is.null(id))
     stop("Must provide a product ID or SKU for updating!")
 

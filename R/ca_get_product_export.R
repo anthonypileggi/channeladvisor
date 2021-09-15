@@ -1,14 +1,19 @@
 
 #' Retreive products via file export (API)
+#' @param account target account/profile
 #' @export
-ca_get_product_export <- function() {
+ca_get_product_export <- function(account = "US") {
+
+  # set account
+  ca_set_account(account)
+  access_token <- Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN")
 
   # prepare url/parameters
   url <- "https://api.channeladvisor.com/v1"
   endpoint <- "ProductExport"
   q <-
     list(
-      access_token = Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN"),
+      access_token = access_token,
       profileid = Sys.getenv("CHANNELADVISOR_PROFILE_ID")
     )
   base_url <- httr::modify_url(url, path = file.path("v1", endpoint))
@@ -30,7 +35,7 @@ ca_get_product_export <- function() {
     token <- httr::content(response)$Token
     q <-
       list(
-        access_token = Sys.getenv("CHANNELADVISOR_ACCESS_TOKEN"),
+        access_token = access_token,
         token = token
       )
     url <- httr::modify_url(base_url, query = q)
