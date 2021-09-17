@@ -4,10 +4,12 @@
 \alias{ca_cancel_order}
 \title{Cancel an order in ChannelAdvisor (note: do not notify marketplace)}
 \usage{
-ca_cancel_order(orderid)
+ca_cancel_order(orderid, account = "US")
 }
 \arguments{
 \item{orderid}{ChannelAdvisor OrderID (character/scalar)}
+
+\item{account}{target Channeladvisor account/profile}
 }
 \description{
 Cancel an order in ChannelAdvisor (note: do not notify marketplace)
